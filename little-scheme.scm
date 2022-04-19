@@ -47,3 +47,22 @@
 
 ;; (insertR 'topping 'fudge '(ice cream with fudge for dessert))
 ;; (insertR 'jalapeno 'and '(tacos tamales and salsa))
+
+(define insertL
+  (lambda (new old lat)
+    (cond
+     ((null? lat) '())
+     ((eq? old (car lat)) (cons new lat))
+     (else (cons (car lat) (insertL new old (cdr lat)))))))
+
+;; (insertL 'topping 'fudge '(ice cream with fudge for dessert))
+
+(define subst
+  (lambda (new old lat)
+    (cond
+     ((null? lat) '())
+     ((eq? (car lat) old) (cons new (cdr lat)))
+     (else (cons (car lat) (subst new old (cdr lat)))))))
+
+;; (subst 'cat 'dog '(the brown dog jumps over the lazy fox))
+
