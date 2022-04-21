@@ -64,5 +64,5 @@
      ((eq? (car lat) old) (cons new (cdr lat)))
      (else (cons (car lat) (subst new old (cdr lat)))))))
 
-;; (subst 'cat 'dog '(the brown dog jumps over the lazy fox))
+(subst 'cat 'dog '(the brown dog jumps over the lazy fox))
 
