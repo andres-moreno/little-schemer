@@ -65,4 +65,3 @@
      (else (cons (car lat) (subst new old (cdr lat)))))))
 
 (subst 'cat 'dog '(the brown dog jumps over the lazy fox))
-
