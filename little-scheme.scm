@@ -64,4 +64,17 @@
      ((eq? (car lat) old) (cons new (cdr lat)))
      (else (cons (car lat) (subst new old (cdr lat)))))))
 
-(subst 'cat 'dog '(the brown dog jumps over the lazy fox))
+;; (subst 'topping 'fudge '(ice cream with fudge for dessert))
+;; => (ice cream with topping for dessert)
+
+(define subst2
+  (lambda (new o1 o2 lat)
+    (cond
+     ((null? lat) '())
+     ((or (eq? o1 (car lat))
+          (eq? o2 (car lat))) (cons new (cdr lat)))
+     (else (cons (car lat)
+                 (subst2 new o1 o2 (cdr lat)))))))
+
+;; (subst2 'vanilla 'chocolate 'banana '(banana ice cream with chocolate topping))
+;; => (vanilla ice cream with chocolate topping)
