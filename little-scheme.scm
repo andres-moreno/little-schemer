@@ -89,3 +89,24 @@
 ;; (multirember 'cup '(coffee cup tea cup and hick cup))
 ;; => (coffee tea and hick)
 
+(define multiInsertR
+  (lambda (new old lat)
+    (cond
+     ((null? lat) '())
+     ((eq? (car lat) old) (cons old (cons new (multiInsertR new old (cdr lat)))))
+     (else (cons (car lat) (multiInsertR new old (cdr lat)))))))
+
+;; (multiInsertR 'fried 'fish '(chips and fish or fish and fried))
+;; => (chips and fish fried or fish fried and fried)
+
+(define multisubst
+  (lambda (new old lat)
+    (cond
+     ((null? lat) '())
+     ((eq? (car lat) old) (cons new (multisubst new old (cdr lat))))
+     (else (cons (car lat) (multisubst new old (cdr lat)))))))
+
+;; (multisubst 'tea 'coffee '(coffee with toffee and coffee)) 
+;; => (tea with toffee and tea)
+
+
